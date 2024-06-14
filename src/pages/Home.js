@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+const API_URL = process.env.REACT_APP_API_URL;
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -13,7 +14,7 @@ const Home = () => {
 
   const fetchPosts = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/posts');
+      const response = await axios.get(`${API_URL}/api/posts`);
       setPosts(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -53,7 +54,7 @@ const Home = () => {
 
   const createPost = async () => {
     try {
-      await axios.post('http://localhost:5000/api/posts', {
+      await axios.post(`${API_URL}/api/posts`, {
         judul: formData.judul,
         deskripsi: formData.deskripsi,
       });
@@ -64,7 +65,7 @@ const Home = () => {
 
   const updatePost = async () => {
     try {
-      await axios.put(`http://localhost:5000/api/posts/${formData.id}`, {
+      await axios.put(`${API_URL}/api/posts/${formData.id}`, {
         judul: formData.judul,
         deskripsi: formData.deskripsi,
       });
@@ -75,7 +76,7 @@ const Home = () => {
 
   const partialUpdatePost = async () => {
     try {
-      await axios.patch(`http://localhost:5000/api/posts/${formData.id}`, {
+      await axios.patch(`${API_URL}/api/posts/${formData.id}`, {
         judul: formData.judul,
         deskripsi: formData.deskripsi,
       });
@@ -86,7 +87,7 @@ const Home = () => {
 
   const deletePost = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/posts/${id}`);
+      await axios.delete(`${API_URL}/api/posts/${id}`);
       fetchPosts();
     } catch (error) {
       console.error('Error deleting post:', error);
