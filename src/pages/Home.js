@@ -15,6 +15,7 @@ const Home = () => {
   const fetchPosts = async () => {
     try {
       const response = await axios.get(`${API_URL}/api/posts`);
+      console.log(response.data); // Tambahkan log ini
       setPosts(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
