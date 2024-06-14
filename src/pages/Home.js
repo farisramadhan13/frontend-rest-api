@@ -90,7 +90,7 @@ const Home = () => {
       await axios.delete(`${API_URL}/api/posts/${id}`);
       fetchPosts();
     } catch (error) {
-      console.error('Error deleting post:', error);
+      console.error('Error deleting post: ', error);
     }
   };
 
